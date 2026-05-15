@@ -34,4 +34,4 @@ Standard drones rely on GPS to know their position. Project ODYSSEY solves the "
 
 ---
 **Developed by Yogesh E S**  
-*Senior Aerospace Portfolio - Project #7 (The Crown Jewel)*
+*Aerospace Portfolio -
