@@ -1,0 +1,121 @@
+<?xml version="1.0"?>
+<robot name="odyssey_drone">
+
+  <!-- Materials -->
+  <material name="blue"> <color rgba="0 0 0.8 1"/> </material>
+  <material name="black"> <color rgba="0.1 0.1 0.1 1"/> </material>
+  <material name="grey"> <color rgba="0.5 0.5 0.5 1"/> </material>
+  <material name="silver"> <color rgba="0.8 0.8 0.8 1"/> </material>
+
+  <!-- Central Hub (Avionics Bay) -->
+  <link name="base_link">
+    <visual>
+      <geometry> <box size="0.2 0.2 0.08"/> </geometry>
+      <material name="blue"/>
+    </visual>
+    <collision>
+      <geometry> <box size="0.2 0.2 0.08"/> </geometry>
+    </collision>
+    <inertial>
+      <mass value="1.5"/>
+      <inertia ixx="0.01" ixy="0.0" ixz="0.0" iyy="0.01" iyz="0.0" izz="0.02"/>
+    </inertial>
+  </link>
+
+  <!-- Arms & Motors Macro-style (Simplified for URDF) -->
+  <!-- Front Right Arm -->
+  <link name="arm_fr">
+    <visual>
+      <origin xyz="0.15 0.15 0" rpy="0 1.57 0.785"/>
+      <geometry> <cylinder length="0.3" radius="0.02"/> </geometry>
+      <material name="black"/>
+    </visual>
+  </link>
+  <joint name="joint_fr" type="fixed">
+    <parent link="base_link"/> <child link="arm_fr"/>
+  </joint>
+
+  <!-- Front Left Arm -->
+  <link name="arm_fl">
+    <visual>
+      <origin xyz="0.15 -0.15 0" rpy="0 1.57 -0.785"/>
+      <geometry> <cylinder length="0.3" radius="0.02"/> </geometry>
+      <material name="black"/>
+    </visual>
+  </link>
+  <joint name="joint_fl" type="fixed">
+    <parent link="base_link"/> <child link="arm_fl"/>
+  </joint>
+
+  <!-- Back Right Arm -->
+  <link name="arm_br">
+    <visual>
+      <origin xyz="-0.15 0.15 0" rpy="0 1.57 -0.785"/>
+      <geometry> <cylinder length="0.3" radius="0.02"/> </geometry>
+      <material name="black"/>
+    </visual>
+  </link>
+  <joint name="joint_br" type="fixed">
+    <parent link="base_link"/> <child link="arm_br"/>
+  </joint>
+
+  <!-- Back Left Arm -->
+  <link name="arm_bl">
+    <visual>
+      <origin xyz="-0.15 -0.15 0" rpy="0 1.57 0.785"/>
+      <geometry> <cylinder length="0.3" radius="0.02"/> </geometry>
+      <material name="black"/>
+    </visual>
+  </link>
+  <joint name="joint_bl" type="fixed">
+    <parent link="base_link"/> <child link="arm_bl"/>
+  </joint>
+
+  <!-- Propellers (Represented as thin discs) -->
+  <link name="prop_fr">
+    <visual>
+      <origin xyz="0.22 0.22 0.05" rpy="0 0 0"/>
+      <geometry> <cylinder length="0.01" radius="0.12"/> </geometry>
+      <material name="silver"/>
+    </visual>
+  </link>
+  <joint name="joint_prop_fr" type="fixed"> <parent link="base_link"/> <child link="prop_fr"/> </joint>
+
+  <link name="prop_fl">
+    <visual>
+      <origin xyz="0.22 -0.22 0.05" rpy="0 0 0"/>
+      <geometry> <cylinder length="0.01" radius="0.12"/> </geometry>
+      <material name="silver"/>
+    </visual>
+  </link>
+  <joint name="joint_prop_fl" type="fixed"> <parent link="base_link"/> <child link="prop_fl"/> </joint>
+
+  <link name="prop_br">
+    <visual>
+      <origin xyz="-0.22 0.22 0.05" rpy="0 0 0"/>
+      <geometry> <cylinder length="0.01" radius="0.12"/> </geometry>
+      <material name="silver"/>
+    </visual>
+  </link>
+  <joint name="joint_prop_br" type="fixed"> <parent link="base_link"/> <child link="prop_br"/> </joint>
+
+  <link name="prop_bl">
+    <visual>
+      <origin xyz="-0.22 -0.22 0.05" rpy="0 0 0"/>
+      <geometry> <cylinder length="0.01" radius="0.12"/> </geometry>
+      <material name="silver"/>
+    </visual>
+  </link>
+  <joint name="joint_prop_bl" type="fixed"> <parent link="base_link"/> <child link="prop_bl"/> </joint>
+
+  <!-- Stereo Camera Suite -->
+  <link name="camera_link">
+    <visual>
+      <origin xyz="0.1 0 0.05" rpy="0 0 0"/>
+      <geometry> <box size="0.04 0.12 0.03"/> </geometry>
+      <material name="grey"/>
+    </visual>
+  </link>
+  <joint name="camera_joint" type="fixed"> <parent link="base_link"/> <child link="camera_link"/> </joint>
+
+</robot>
